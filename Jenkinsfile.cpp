@@ -15,6 +15,7 @@ pipeline {
                 echo 'Running Tests'
                 sh './hello'
                 echo 'Test Stage Successful'
+                sh 'exit 1'  // Intentional error to fail the stage
             }
             post {
                 always {
@@ -37,7 +38,7 @@ pipeline {
             echo 'Pipeline completed successfully!'
         }
         failure {
-            echo 'Pipeline failed! Check logs for errors.'
+            echo 'Pipeline failed!'
         }
     }
 }
