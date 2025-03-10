@@ -5,8 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Starting Build Stage'
-                sh 'ls -l'  // List files to confirm hello.cpp exists
-                sh 'g++ hello.cpp -o hello || exit 1'
+                sh 'g++ main/hello.cpp -o hello'  // Updated path to hello.cpp
                 echo 'Build Stage Successful'
             }
         }
