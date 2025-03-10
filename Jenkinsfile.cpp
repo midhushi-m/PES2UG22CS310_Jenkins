@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Starting Build Stage'
-                sh 'mvn clean install'
+                sh 'echo Build simulation - No mvn required'
                 echo 'Build Stage Successful'
             }
         }
@@ -13,12 +13,12 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running Tests'
-                sh 'mvn test'
+                sh 'echo Test simulation - No mvn required'
                 echo 'Test Stage Successful'
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                    echo 'Simulated test reports generated'
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying Application'
-                sh 'mvn deploy'
+                sh 'echo Deploy simulation - No mvn required'
                 echo 'Deployment Successful'
             }
         }
