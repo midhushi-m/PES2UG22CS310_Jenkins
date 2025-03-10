@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Starting Build Stage'
-                sh 'g++ main/hello.cpp -o hello'  // Updated path to hello.cpp
+                sh 'g++ main/hello.cpp -o hello'  // Introduced error: wrong path
                 echo 'Build Stage Successful'
             }
         }
