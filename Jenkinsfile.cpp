@@ -2,38 +2,42 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
-            steps {
-                // Clone the repository
-                git branch: 'main', url: 'https://github.com/midhushi-m/PES2UG22CS310_Jenkins.git'
-            }
-        }
-
         stage('Build') {
             steps {
-                // Compile the C++ code
-                build 'PES2UG22CS310-1'
-                sh 'g++ main.cpp -o output'
+                echo 'Starting Build Stage'
+                sh 'mvn clean install'
+                echo 'Build Stage Successful'
             }
         }
 
         stage('Test') {
             steps {
-                // Run the output file
-                sh './output'
+                echo 'Running Tests'
+                sh 'mvn test'
+                echo 'Test Stage Successful'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying...'
+                echo 'Deploying Application'
+                sh 'mvn deploy'
+                echo 'Deployment Successful'
             }
         }
     }
 
     post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
         failure {
-            error('Pipeline failed')
+            echo 'Pipeline failed! Check logs for errors.'
         }
     }
 }
