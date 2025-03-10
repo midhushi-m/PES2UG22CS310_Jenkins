@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Starting Build Stage'
-                sh 'echo Build simulation - No mvn required'
+                sh 'echo Build simulation'
                 echo 'Build Stage Successful'
             }
         }
@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying Application'
-                sh 'echo Deploy simulation - No mvn required'
+                sh 'echo Deploy simulation'
                 echo 'Deployment Successful'
             }
         }
